@@ -13,7 +13,7 @@ def check_java_version
     exit 1
   end
 
-  unless `java -version 2>&1` =~ /^(java|openjdk) version "1.8/
+  unless `java -version 2>&1` =~ /^(java|openjdk) version "1.[89]/
     puts "You need Java version 8.0 or newer to run Solr."
     puts "Please upgrade Java and re-run this script."
     exit 1
