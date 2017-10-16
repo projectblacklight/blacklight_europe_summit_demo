@@ -65,4 +65,5 @@ gem 'honeybadger'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
+  gem 'rspec-rails'
 end

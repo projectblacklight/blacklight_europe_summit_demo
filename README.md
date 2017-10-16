@@ -31,7 +31,7 @@ $ bin/setup
 Running the tests:
 
 ```console
-$ bundle exec rake ci
+$ bundle exec rake
 ```
 
 Running the rails server:

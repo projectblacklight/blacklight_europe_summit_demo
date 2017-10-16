@@ -11,7 +11,7 @@ before_install:
   - bin/setup
 
 script:
-  - bundle exec rake ci
+  - bundle exec rake
 
 global_env:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
