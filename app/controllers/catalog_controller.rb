@@ -44,7 +44,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the search facets
     #   The ordering of the field names is the order of the display
     config.add_facet_field 'author_ssim', label: 'Author'
-    config.add_facet_field 'subject_topic_ssim', label: 'Subject'
+    config.add_facet_field 'subject_topic_ssim', label: 'Subject', loading: 'lazy' # 'on-demand', 'eager'
     config.add_facet_field 'pub_date_ssim', label: 'Publication Date'
     config.add_facet_field 'language_ssim', label: 'Language'
 
@@ -54,5 +54,35 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
 
     config.add_search_field 'default'
+  end
+
+  def facets_from_request(fields = facet_field_names)
+    fields.map { |field| facet_by_field_name(field) || Placeholder.new(field) }
+  end
+  helper_method :facets_from_request
+
+
+  class Placeholder
+    def initialize(field)
+      @field = field
+    end
+    attr_accessor :field
+
+    def name
+      field
+    end
+
+    def items
+      []
+    end
+
+    def sort
+    end
+
+    def offset
+    end
+    
+    def prefix
+    end
   end
 end
